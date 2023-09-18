@@ -35,12 +35,12 @@ class _TestMiniMapState extends State<TestMiniMap> {
 
     controller = MapController(
       initPosition: GeoPoint(latitude: 47.4358055, longitude: 8.4737324),
-      areaLimit: BoundingBox(
-        east: bounds.east,
-        north: bounds.north,
-        south: bounds.south,
-        west: bounds.west,
-      ),
+      // areaLimit: BoundingBox(
+      //   east: bounds.east,
+      //   north: bounds.north,
+      //   south: bounds.south,
+      //   west: bounds.west,
+      // ),
     );
     super.initState();
   }
@@ -68,7 +68,7 @@ class _TestMiniMapState extends State<TestMiniMap> {
       width: 350,
       child: OSMFlutter(
         controller: controller,
-        osmOption: OSMOption(enableRotationByGesture: false),
+        osmOption: const OSMOption(enableRotationByGesture: false,zoomOption: ZoomOption(minZoomLevel:10,initZoom: 10 )),
         onMapIsReady: (p0) async => {
           await controller.zoomToBoundingBox(
               BoundingBox.fromGeoPoints(coordinatesArray),
